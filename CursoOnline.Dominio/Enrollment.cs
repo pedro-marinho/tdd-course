@@ -20,7 +20,16 @@ namespace CursoOnline.Dominio
                 _pricePaid = value;
             }
         }
-        public bool Discounted => PricePaid != Course.Value;
+
+        private bool _discounted;
+        public bool Discounted
+        {
+            get => _discounted;
+            private set
+            {
+                _discounted = PricePaid != Course.Value;
+            }
+        }
 
         private double _finalGrade;
         public double FinalGrade {
@@ -35,6 +44,9 @@ namespace CursoOnline.Dominio
 
         public Student Student { get; private set; }
         public Course Course { get; private set; }
+
+        public int StudentId { get; private set; }
+        public int CourseId { get; private set; }
 
         private Enrollment() { }
 
