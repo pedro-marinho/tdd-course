@@ -21,18 +21,10 @@ namespace CursoOnline.Dominio
             }
         }
 
-        private bool _discounted;
-        public bool Discounted
-        {
-            get => _discounted;
-            private set
-            {
-                _discounted = PricePaid != Course.Value;
-            }
-        }
+        public bool Discounted { get; set; }
 
-        private double _finalGrade;
-        public double FinalGrade {
+        private double? _finalGrade;
+        public double? FinalGrade {
             get => _finalGrade;
             private set
             {
@@ -57,7 +49,20 @@ namespace CursoOnline.Dominio
             Validator.When(Student.TargetAudience != Course.TargetAudience, "Course and Student target audiences must be equal");
             PricePaid = pricePaid;
             Cancelled = cancelled;
+            Discounted = course.Value != pricePaid;
 
+            Check();
+        }
+
+        public void ChangeCancelled(bool status)
+        {
+            Cancelled = status;
+            Check();
+        }
+
+        public void ChangeFinalGrade(double finalGrade)
+        {
+            FinalGrade = finalGrade;
             Check();
         }
     }

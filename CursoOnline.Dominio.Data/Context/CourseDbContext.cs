@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace CursoOnline.Dominio.Data.Context
 {
@@ -24,6 +23,7 @@ namespace CursoOnline.Dominio.Data.Context
 
             builder.Entity<Enrollment>().Ignore(e => e.Validator);
             builder.Entity<Enrollment>().Property(e => e.PricePaid).IsRequired();
+            builder.Entity<Enrollment>().Property(e => e.FinalGrade).IsRequired(false);
             builder.Entity<Enrollment>().Property(e => e.Discounted).IsRequired();
             builder.Entity<Enrollment>().Property(e => e.StudentId).IsRequired();
             builder.Entity<Enrollment>().Property(e => e.CourseId).IsRequired();

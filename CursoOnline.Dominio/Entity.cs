@@ -14,7 +14,7 @@ namespace CursoOnline.Dominio
             Validator = DomainValidator.New();
         }
 
-        public void Check()
+        protected void Check()
         {
             Validator.ThrowExceptionIfHasErrors();
         }

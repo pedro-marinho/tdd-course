@@ -2,11 +2,6 @@
 using CursoOnline.Dominio.Enums;
 using CursoOnline.Dominio.Test.Extensions;
 using CursoOnline.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace CursoOnline.Dominio.Test
@@ -49,6 +44,16 @@ namespace CursoOnline.Dominio.Test
             var enrollment = new Enrollment(75, false, student, course);
 
             Assert.True(enrollment.Discounted);
+        }
+
+        [Fact]
+        public void ShouldNotAcceptDifferentTargetAudiences()
+        {
+            var course = new Course(faker.Random.Word(), faker.Random.Double(0.1), TargetAudience.Entrepreneur, 150, faker.Random.Words());
+            var student = new Student(faker.Name.FullName(), faker.Random.Words(), faker.Internet.Email(), TargetAudience.Student);
+
+            Assert.Throws<DomainException>(() => new Enrollment(75, false, student, course))
+                .WithMessage("Course and Student target audiences must be equal");
         }
     }
 }

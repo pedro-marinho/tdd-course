@@ -36,7 +36,7 @@ namespace CursoOnline.Dominio
         }
         public TargetAudience TargetAudience { get; private set; }
 
-        private Student() { }
+        protected Student() { }
 
         public Student(string name, string cpf, string email, TargetAudience targetAudience)
         {

@@ -31,7 +31,7 @@ namespace CursoOnline.Dominio
         public double Value { get; private set; }
         public string Description { get; private set; }
 
-        private Course() { }
+        protected Course() { }
 
         public Course(string name, double workload, TargetAudience targetAudience, double value, string description) : base()
         {

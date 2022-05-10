@@ -14,7 +14,7 @@ namespace CursoOnline.Dominio.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PricePaid = table.Column<double>(type: "float", nullable: false),
                     Discounted = table.Column<bool>(type: "bit", nullable: false),
-                    FinalGrade = table.Column<double>(type: "float", nullable: false),
+                    FinalGrade = table.Column<double>(type: "float", nullable: true),
                     Cancelled = table.Column<bool>(type: "bit", nullable: false),
                     StudentId = table.Column<int>(type: "int", nullable: false),
                     CourseId = table.Column<int>(type: "int", nullable: false)
