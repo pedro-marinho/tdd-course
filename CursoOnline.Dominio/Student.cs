@@ -1,5 +1,6 @@
 ﻿using CursoOnline.Dominio.Enums;
 using CursoOnline.Utils;
+using System.Collections.Generic;
 
 namespace CursoOnline.Dominio
 {
@@ -34,7 +35,7 @@ namespace CursoOnline.Dominio
                 _email = value;
             }
         }
-        public TargetAudience TargetAudience { get; private set; }
+        public TargetAudience TargetAudience { get; protected set; }
 
         protected Student() { }
 

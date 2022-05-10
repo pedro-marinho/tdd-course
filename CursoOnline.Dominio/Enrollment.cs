@@ -37,10 +37,10 @@ namespace CursoOnline.Dominio
         public Student Student { get; private set; }
         public Course Course { get; private set; }
 
-        public int StudentId { get; private set; }
-        public int CourseId { get; private set; }
+        public int StudentId { get; protected set; }
+        public int CourseId { get; protected set; }
 
-        private Enrollment() { }
+        protected Enrollment() { }
 
         public Enrollment(double pricePaid, bool cancelled, Student student, Course course)
         {

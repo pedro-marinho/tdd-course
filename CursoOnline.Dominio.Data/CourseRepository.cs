@@ -17,5 +17,12 @@ namespace CursoOnline.Dominio.Data
         {
             return await _ctx.Courses.Where(c => c.Name == name).FirstOrDefaultAsync();
         }
+
+        public async Task<Course> GetByIdWithEnrollments(int id)
+        {
+            return await _ctx.Courses.Where(c => c.Id == id)
+                .Include(c => c.Enrollments)
+                .FirstOrDefaultAsync();
+        }
     }
 }

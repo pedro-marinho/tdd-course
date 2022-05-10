@@ -17,9 +17,11 @@ namespace CursoOnline.Dominio.IoC
             services.AddDbContext<CourseDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<CourseStorerService>();
             services.AddScoped<StudentStorerService>();
+            services.AddScoped<EnrollmentStorerService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CursoOnline.Dominio.Repositories;
 using CursoOnline.Dominio.Resources;
 using CursoOnline.Utils;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CursoOnline.Dominio.Services
@@ -28,8 +29,11 @@ namespace CursoOnline.Dominio.Services
             validator.When(student == null, "Student not found");
             validator.ThrowExceptionIfHasErrors();
 
-            var course = await _courseRepository.GetById(dto.CourseId);
+            var course = await _courseRepository.GetByIdWithEnrollments(dto.CourseId);
             validator.When(course == null, "Course not found");
+            validator.ThrowExceptionIfHasErrors();
+
+            validator.When(course != null && course.Enrollments != null && course.Enrollments.Any(e => e.StudentId == dto.StudentId && !e.Cancelled), "Student already enrolled in this course");
             validator.ThrowExceptionIfHasErrors();
 
             var enrollment = new Enrollment(dto.PricePaid, dto.Cancelled, student, course);
